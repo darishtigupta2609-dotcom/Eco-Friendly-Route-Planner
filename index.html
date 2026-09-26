@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRoute | Futuristic Route Intelligence</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet Live Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Project Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+
+    <!-- Login Overlay Screen -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="glass-card login-card">
+            <div class="logo"><i class="fa-solid fa-leaf"></i> ECO<span>ROUTE</span></div>
+            <h2>SYSTEM ACCESS LOGIN</h2>
+            <p>Enter credentials to access route intelligence telemetry.</p>
+            <form id="login-form">
+                <div class="input-field">
+                    <label for="username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required>
+                </div>
+                <div class="input-field">
+                    <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="cyber-btn">AUTHENTICATE & ENTER <i class="fa-solid fa-key"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Application -->
+    <div id="app-content" class="hidden">
+        <!-- Header / Navbar -->
+        <header>
+            <div class="logo"><i class="fa-solid fa-leaf"></i> ECO<span>ROUTE</span></div>
+            <nav>
+                <a href="#planner"><i class="fa-solid fa-route"></i> Live Planner</a>
+                <a href="#impact"><i class="fa-solid fa-chart-pie"></i> Impact Grid</a>
+                <a href="#about"><i class="fa-solid fa-microchip"></i> System Core</a>
+                <button id="logout-btn" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </nav>
+        </header>
+
+        <!-- Main Container -->
+        <main class="main-wrapper">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1 class="glitch-text">PLAN SMARTER. <span>TRAVEL GREENER.</span></h1>
+                <p>Real-time telemetry, live route mapping, and atmospheric carbon reduction matrix.</p>
+            </section>
+
+            <!-- Planner Split Grid -->
+            <section id="planner" class="planner-grid">
+                <!-- Left Panel: Input Controls -->
+                <div class="glass-card input-card">
+                    <h2><i class="fa-solid fa-sliders"></i> Navigation Parameters</h2>
+                    <form id="route-form">
+                        <div class="input-field">
+                            <label for="start"><i class="fa-solid fa-location-dot"></i> Starting Location</label>
+                            <input type="text" id="start" placeholder="e.g., Central Park, NY" required>
+                        </div>
+
+                        <!-- Latitude & Longitude Inputs -->
+                        <div class="coords-row">
+                            <div class="input-field">
+                                <label for="start-lat"><i class="fa-solid fa-map-pin"></i> Start Latitude</label>
+                                <input type="number" id="start-lat" placeholder="e.g., 40.7851" step="any" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="start-lng"><i class="fa-solid fa-map-pin"></i> Start Longitude</label>
+                                <input type="number" id="start-lng" placeholder="e.g., -73.9683" step="any" required>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="destination"><i class="fa-solid fa-flag-checkered"></i> Destination</label>
+                            <input type="text" id="destination" placeholder="e.g., Times Square, NY" required>
+                        </div>
+
+                        <div class="coords-row">
+                            <div class="input-field">
+                                <label for="dest-lat"><i class="fa-solid fa-location-crosshairs"></i> Dest. Latitude</label>
+                                <input type="number" id="dest-lat" placeholder="e.g., 40.7580" step="any" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="dest-lng"><i class="fa-solid fa-location-crosshairs"></i> Dest. Longitude</label>
+                                <input type="number" id="dest-lng" placeholder="e.g., -73.9855" step="any" required>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="distance"><i class="fa-solid fa-ruler-horizontal"></i> Manual Distance (km)</label>
+                            <input type="number" id="distance" placeholder="e.g., 12" min="0.1" step="0.1" required>
+                        </div>
+
+                        <button type="submit" class="cyber-btn">
+                            <span>CALCULATE ECO-TELEMETRY</span> <i class="fa-solid fa-bolt"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Panel: Live Map -->
+                <div class="glass-card map-card">
+                    <h2><i class="fa-solid fa-earth-americas"></i> Live Satellite Matrix</h2>
+                    <div id="map"></div>
+                </div>
+            </section>
+
+            <!-- Dynamic Results Dashboard -->
+            <section id="results" class="results-wrapper hidden">
+                <div class="glass-card">
+                    <h2><i class="fa-solid fa-bolt-lightning"></i> Modal Carbon Comparison</h2>
+                    <div class="cards-grid" id="cards-grid"></div>
+                </div>
+
+                <div class="glass-card chart-card">
+                    <h2><i class="fa-solid fa-chart-column"></i> Carbon Footprint Telemetry</h2>
+                    <div id="emissions-chart" class="chart-container"></div>
+                </div>
+            </section>
+
+            <!-- Environmental Impact -->
+            <section id="impact" class="glass-card impact-section">
+                <h2><i class="fa-solid fa-seedling"></i> Environmental Footprint Analysis</h2>
+                <div class="impact-grid">
+                    <div class="impact-box">
+                        <div class="icon-glow car"><i class="fa-solid fa-car"></i></div>
+                        <h3>ICE Vehicles</h3>
+                        <p>High local pollution (~192g CO₂/km). Primary contributor to urban particulate emissions.</p>
+                    </div>
+                    <div class="impact-box">
+                        <div class="icon-glow bus"><i class="fa-solid fa-bus"></i></div>
+                        <h3>Mass Transit</h3>
+                        <p>High efficiency (~68g CO₂/km/pax). Drastically cuts urban grid congestion.</p>
+                    </div>
+                    <div class="impact-box">
+                        <div class="icon-glow bike"><i class="fa-solid fa-bicycle"></i></div>
+                        <h3>Zero Emission</h3>
+                        <p>0g/km carbon impact. Promotes physical health and zero local noise pollution.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Project -->
+            <section id="about" class="glass-card about-section">
+                <h2><i class="fa-solid fa-brain"></i> System Architecture & Specs</h2>
+                <p><strong>Problem:</strong> Commuters lack immediate carbon metrics when making transit choices.</p>
+                <p><strong>Solution:</strong> EcoRoute integrates interactive spatial data and carbon conversion algorithms to optimize eco-friendly commuter decisions.</p>
+                <p><strong>Formulae:</strong> Fuel Consumption = Distance x 0.08 L/km. Bus Shared Emissions = 68g CO₂/pkm.</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>ECO<span>ROUTE</span> PLATFORM &copy; 2026 | BUILT WITH LEAFLET.JS & GLASSMORPHISM HUD</p>
+        </footer>
+    </div>
+
+    <!-- Leaflet JS Engine -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
