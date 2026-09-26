@@ -1,0 +1,378 @@
+:root {
+    --bg-dark: #080d16;
+    --neon-green: #00ff87;
+    --neon-cyan: #60efff;
+    --card-bg: rgba(16, 24, 39, 0.75);
+    --border-color: rgba(0, 255, 135, 0.25);
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Ambient Cyber Glow Background */
+.background-glow {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 50% 20%, rgba(0, 255, 135, 0.12), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(96, 239, 255, 0.1), transparent 50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Login Overlay */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 13, 22, 0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+}
+
+.login-card h2 {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin: 0.8rem 0 0.4rem;
+}
+
+.login-card p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(8, 13, 22, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--neon-green);
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--neon-cyan);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-left: 1.8rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--neon-green);
+}
+
+.logout-btn {
+    margin-left: 2rem;
+    background: transparent;
+    border: 1px solid rgba(255, 82, 82, 0.4);
+    color: #ff5252;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 82, 82, 0.2);
+}
+
+/* Main Wrapper */
+.main-wrapper {
+    max-width: 1280px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Hero */
+.hero-section {
+    text-align: center;
+    margin: 2rem 0 3rem;
+}
+
+.glitch-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.glitch-text span {
+    background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-section p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.8rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin-bottom: 2rem;
+}
+
+.glass-card h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    color: var(--neon-green);
+    margin-bottom: 1.2rem;
+}
+
+/* Grid Layout */
+.planner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .planner-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Coordinate Row Split */
+.coords-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+/* Inputs */
+.input-field {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.input-field label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.input-field input:focus {
+    border-color: var(--neon-green);
+    box-shadow: 0 0 10px rgba(0, 255, 135, 0.2);
+}
+
+/* Button */
+.cyber-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(90deg, #00ff87, #60efff);
+    border: none;
+    border-radius: 8px;
+    color: #080d16;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.cyber-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 135, 0.5);
+}
+
+/* Live Map */
+#map {
+    height: 420px;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dynamic Results Layout */
+.hidden {
+    display: none !important;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+}
+
+.mode-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.mode-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-cyan);
+}
+
+.mode-card.eco-winner {
+    border: 1px solid var(--neon-green);
+    background: rgba(0, 255, 135, 0.05);
+}
+
+.mode-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mode-card p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.mode-card p strong {
+    color: #fff;
+}
+
+/* Bar Chart */
+.chart-container {
+    margin-top: 1rem;
+}
+
+.chart-bar-item {
+    margin-bottom: 1rem;
+}
+
+.chart-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+}
+
+.chart-track {
+    background: rgba(255, 255, 255, 0.08);
+    height: 16px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.chart-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+    border-radius: 20px;
+    width: 0%;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Impact Section Grid */
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.impact-box {
+    text-align: center;
+    padding: 1rem;
+}
+
+.icon-glow {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.icon-glow.car { color: #ff5252; border-color: rgba(255, 82, 82, 0.4); }
+.icon-glow.bus { color: #ffd700; border-color: rgba(255, 215, 0, 0.4); }
+.icon-glow.bike { color: var(--neon-green); border-color: var(--border-color); }
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-family: 'Orbitron', sans-serif;
+    border-top: 1px solid var(--border-color);
+}
+
+footer span {
+    color: var(--neon-green);
+}
